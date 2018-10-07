@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<efcore namespace="TestManager.Database" p1:Guid="159edc2e-c5a3-4f10-96a5-fb6f00f8206b" xmlns:p1="http://devart.com/schemas/EntityDeveloper/1.0">
+  <class name="Case" entity-set="Cases" table="`Case`" schema="data" p1:Guid="6cee36f9-d221-47b0-ab2c-3350706bdae5">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="c23dd45f-9ecd-4d80-92ea-be5ae0be85bd">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="IdPlan" type="Int32" p1:ValidateRequired="true" p1:Guid="f9429282-f087-4337-bdc0-55311404f46a">
+      <column name="IdPlan" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="Name" type="String" p1:ValidateMaxLength="500" p1:ValidateRequired="true" p1:Guid="c141fd22-3e82-490a-953e-c42b849913ac">
+      <column name="Name" not-null="True" length="500" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Description" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="d2acbd80-60ce-45da-8973-b6310ed245d3">
+      <column name="Description" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="DateCreated" type="DateTime" p1:ValidateRequired="true" p1:Guid="f0c1d40d-7bc4-43a4-b26c-cde3dd05a640">
+      <column name="DateCreated" not-null="True" sql-type="datetime" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="Plan" entity-set="Plans" table="`Plan`" schema="data" p1:Guid="37251d4d-2ffb-4b29-9911-235014dc4a62">
+    <id name="Id" type="Int32" value-generated="OnAdd" p1:ValidateRequired="true" p1:Guid="0e300853-9cbe-436e-8ad6-2385b6328211">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="IdProject" type="Int32" p1:ValidateRequired="true" p1:Guid="cf9d2e0f-31ee-456f-ad85-eecd30042625">
+      <column name="IdProject" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </property>
+    <property name="Name" type="String" p1:ValidateMaxLength="300" p1:ValidateRequired="true" p1:Guid="e1d1707f-1332-4188-9701-930f5aa42d89">
+      <column name="Name" not-null="True" length="300" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Description" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="cd9d4de6-cae0-4030-9e25-6ac816589237">
+      <column name="Description" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="DateCreated" type="DateTime" p1:ValidateRequired="true" p1:Guid="af0fd93e-3d68-40f6-bb52-33f5cd3448a8">
+      <column name="DateCreated" not-null="True" sql-type="datetime" p1:unicode="False" />
+    </property>
+  </class>
+  <class name="Project" entity-set="Projects" table="Project" schema="data" p1:Guid="7a26e2be-092c-4692-96b8-d6019f9d8d5b">
+    <id name="Id" type="Int32" p1:ValidateRequired="true" p1:Guid="c6006bfe-2319-4784-93b5-f044353b632d">
+      <column name="Id" not-null="True" precision="10" scale="0" sql-type="int" p1:unicode="False" />
+    </id>
+    <property name="Name" type="String" p1:ValidateMaxLength="300" p1:ValidateRequired="true" p1:Guid="f49b3a7a-7d9a-4f12-b4ea-1534e040237e">
+      <column name="Name" not-null="True" length="300" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="Description" type="String" p1:nullable="True" p1:ValidateMaxLength="500" p1:ValidateRequired="false" p1:Guid="650a139d-1ee6-47e2-93e4-39741d06777e">
+      <column name="Description" not-null="False" length="500" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+    <property name="AvatarUrl" type="String" p1:nullable="True" p1:ValidateMaxLength="1000" p1:ValidateRequired="false" p1:Guid="07c6437a-57f6-4e17-bb60-1e50b4d84177">
+      <column name="AvatarUrl" not-null="False" length="1000" sql-type="nvarchar" p1:unicode="True" />
+    </property>
+  </class>
+  <associations>
+    <association name="Plan_Case" cardinality="OneToMany" p1:Guid="fa5fd584-6931-4f85-8f2c-696ef77ec83d">
+      <end1 multiplicity="One" name="Plan" class="Case" relation-class="Plan" constrained="True" lazy="False" p1:Guid="dbcc949b-6008-42f7-b7a6-9739748f3dd4">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="Cases" class="Plan" relation-class="Case" lazy="False" p1:Guid="66cd1715-2200-40a9-9d9c-789d886976d4">
+        <property name="IdPlan" />
+      </end2>
+    </association>
+    <association name="Project_Plan" cardinality="OneToMany" p1:Guid="14e9b6e2-4a0a-4bea-b944-9c655dad35bf">
+      <end1 multiplicity="One" name="Project" class="Plan" relation-class="Project" constrained="True" lazy="False" p1:Guid="07d69f1e-fe4a-4d8b-ac5a-ba2c2d45c1b7">
+        <property name="Id" />
+      </end1>
+      <end2 multiplicity="Many" name="Plans" class="Project" relation-class="Plan" lazy="False" p1:Guid="af48dcd0-0314-4b7e-aade-fedda90a1f76">
+        <property name="IdProject" />
+      </end2>
+    </association>
+  </associations>
+</efcore>
